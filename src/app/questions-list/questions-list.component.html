@@ -1,0 +1,10 @@
+<md-list>
+  <md-list-item *ngFor="let q of questions">
+    <p md-line>
+      <span> {{q.content}} </span>
+    </p>
+    <button md-icon-button disableRipple="true" class="action-button">
+      <md-icon>description</md-icon>
+    </button>
+  </md-list-item>
+</md-list>
