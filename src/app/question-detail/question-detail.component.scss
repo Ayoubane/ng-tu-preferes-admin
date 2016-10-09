@@ -1,0 +1,16 @@
+.full-width {
+  width: 100%;
+}
+
+.choice-field {
+  width: 33%;
+  @media(max-width: 974px) {
+    width: 100%;
+  }
+}
+
+.remove-choice-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

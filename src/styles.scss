@@ -3,8 +3,20 @@
 body {
   margin: 0;
   background: #fafafa;
+  overflow-x: hidden;
 }
 
 .app-content md-card {
   margin-bottom: 20px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.app-action {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }

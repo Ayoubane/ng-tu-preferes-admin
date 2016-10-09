@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {QuestionsService} from "../shared/questions.service";
 import {Question} from "../shared/question";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-questions-list',
@@ -12,7 +13,7 @@ export class QuestionsListComponent {
   questions: Question[];
   publishedFilter = '';
 
-  constructor(private questionsService: QuestionsService) {
+  constructor(private questionsService: QuestionsService, private router: Router) {
   }
 
   getQuestions() {
@@ -33,6 +34,10 @@ export class QuestionsListComponent {
   static computeClassName(q: Question): Question {
     q.className = q.published ? 'published' : 'unpublished';
     return q;
+  }
+
+  goToQuestionDetail(question: Question) {
+    this.router.navigate(['/questions', question.id]);
   }
 
 }

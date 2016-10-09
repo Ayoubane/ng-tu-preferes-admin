@@ -17,8 +17,20 @@ export class QuestionsService {
       .map(res => res.json());
   }
 
-  changeQuestionVisibility(question: Question): Observable<Response> {
-    let options = this.authService.provideRequestOption();
-    return this.http.patch(`${this.apiUrl}/api/questions/${question.id}`, {published: !question.published}, options);
+  public getQuestionDetail(id: string): Observable<Question> {
+    return this.http.get(`${this.apiUrl}/api/questions/${id}`)
+      .map(res => res.json());
+  }
+
+  public changeQuestionVisibility(question: Question): Observable<Response> {
+    return this.http.patch(`${this.apiUrl}/api/questions/${question.id}`, {published: !question.published}, this._options);
+  }
+
+  public updateQuestion(questionId: string, data: any): Observable<Response> {
+    return this.http.patch(`${this.apiUrl}/api/questions/${questionId}`, data, this._options);
+  }
+
+  get _options() {
+    return this.authService.provideRequestOption();
   }
 }

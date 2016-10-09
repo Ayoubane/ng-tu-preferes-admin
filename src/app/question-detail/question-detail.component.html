@@ -1,0 +1,49 @@
+<md-card>
+  <a md-raised-button routerLink="/">Retourner à la liste</a>
+
+  <button md-raised-button (click)="addChoice()" class="pull-right">
+    Ajouter un choix
+  </button>
+</md-card>
+
+<form novalidate [formGroup]="form" (submit)="saveQuestion()" (keypress)="handleKeyPress($event)">
+  <md-card>
+    <md-slide-toggle formControlName="published">
+      Publiée
+    </md-slide-toggle>
+  </md-card>
+
+  <md-card>
+    <md-input formControlName="content" placeholder="Contenu" required="true" [dividerColor]="form.controls.content.valid  ? 'primary' : 'warn'" class="full-width"></md-input>
+  </md-card>
+
+  <div formArrayName="choices">
+    <md-card *ngFor="let choice of choices.controls; let i=index" [formGroupName]="i">
+      <span md-icon-button color="warn" (click)="choices.removeAt(i)" class="remove-choice-btn">
+        <md-icon>delete forver</md-icon>
+      </span>
+      <md-input
+        formControlName="content"
+        placeholder="Contenu"
+        required="true"
+        [dividerColor]="choices.controls[i].controls.content.valid ? 'primary' : 'warn'"
+        class="choice-field"></md-input>
+      <md-input
+        formControlName="content_short"
+        placeholder="Contenu court"
+        required="true"
+        [dividerColor]="choices.controls[i].controls.content_short.valid ? 'primary' : 'warn'"
+        class="choice-field"></md-input>
+      <md-input
+        formControlName="slug"
+        placeholder="Slug"
+        required="true"
+        [dividerColor]="choices.controls[i].controls.slug.valid ? 'primary' : 'warn'"
+        class="choice-field"></md-input>
+    </md-card>
+  </div>
+
+  <span class="app-action">
+    <button md-fab type="submit" [disabled]="!form.valid"><md-icon>check circle</md-icon></button>
+  </span>
+</form>
