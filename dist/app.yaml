@@ -1,0 +1,13 @@
+application: tu-preferes-1330
+service: admin
+runtime: go
+api_version: go1
+version: v1-0-0-beta-1
+handlers:
+- url: /
+  static_files: statics/index.html
+  upload: statics/index\.html
+  secure: always
+- url: /
+  static_dir: statics
+  secure: always
