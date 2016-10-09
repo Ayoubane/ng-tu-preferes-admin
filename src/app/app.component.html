@@ -3,7 +3,9 @@
 
   <span class="app-toolbar-filler"></span>
 
-  <button md-button>Se connecter</button>
+  <button *ngIf="user" md-button (click)="signOut()">Se déconnecter</button>
+  <button *ngIf="!user" md-button (click)="signIn()">Se connecter</button>
+  <img *ngIf="user" [src]="userAvatarUrl" class="avatar-img">
 </md-toolbar>
 
 <div class="app-content">

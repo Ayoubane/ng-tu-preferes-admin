@@ -6,7 +6,7 @@ import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { QuestionsListComponent } from './questions-list/questions-list.component';
-import { QuestionsService } from './shared';
+import { QuestionsService, AuthService } from './shared';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { QuestionsService } from './shared';
     MaterialModule.forRoot()
   ],
   providers: [
-    QuestionsService
+    QuestionsService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
