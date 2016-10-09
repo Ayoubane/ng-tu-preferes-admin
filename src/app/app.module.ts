@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule, XHRBackend, Http, RequestOptions} from '@angular/http';
+import {MaterialModule} from '@angular/material';
 
-import { AppComponent } from './app.component';
-import { QuestionsListComponent } from './questions-list/questions-list.component';
-import { QuestionsService, AuthService } from './shared';
+import {AppComponent} from './app.component';
+import {QuestionsListComponent} from './questions-list/questions-list.component';
+import {QuestionsService, AuthService} from './shared';
 
 @NgModule({
   declarations: [
@@ -25,4 +25,5 @@ import { QuestionsService, AuthService } from './shared';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

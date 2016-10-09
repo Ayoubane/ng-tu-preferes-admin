@@ -1,3 +1,11 @@
-.action-button {
-  background: transparent;
+.published {
+  .publish-btn {
+    color: green;
+  }
+}
+
+.unpublished {
+  .publish-btn {
+    color: lightgrey;
+  }
 }

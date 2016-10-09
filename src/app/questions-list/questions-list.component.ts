@@ -1,32 +1,38 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {QuestionsService} from "../shared/questions.service";
 import {Question} from "../shared/question";
-import {MdRadioButton} from "@angular/material";
 
 @Component({
   selector: 'app-questions-list',
   templateUrl: './questions-list.component.html',
   styleUrls: ['./questions-list.component.scss']
 })
-export class QuestionsListComponent implements OnInit {
+export class QuestionsListComponent {
 
   questions: Question[];
-  publishedFilter: any;
+  publishedFilter = '';
 
   constructor(private questionsService: QuestionsService) {
   }
 
-  ngOnInit() {
-    this.getQuestions();
+  getQuestions() {
+    this.questionsService.getQuestions(this.publishedFilter)
+      .subscribe(questions => this.questions = questions.map(q => QuestionsListComponent.computeClassName(q)));
   }
 
-  getQuestions(published = '') {
-    this.questionsService.getQuestions(published)
-      .subscribe(questions => this.questions = questions);
+  changeQuestionVisiblity(question: Question) {
+    this.questionsService.changeQuestionVisibility(question)
+      .subscribe(res => {
+        if (res.ok) {
+          question.published = !question.published;
+          QuestionsListComponent.computeClassName(question);
+        }
+      });
   }
 
-  updatePublishedFilter(event: MdRadioButton) {
-    this.getQuestions(event.value);
+  static computeClassName(q: Question): Question {
+    q.className = q.published ? 'published' : 'unpublished';
+    return q;
   }
 
 }
