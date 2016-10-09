@@ -1,3 +1,10 @@
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
+
 body {
   margin: 0;
+  background: #fafafa;
+}
+
+.app-content md-card {
+  margin-bottom: 20px;
 }

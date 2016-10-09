@@ -11,8 +11,8 @@ export class QuestionsService {
   constructor(private http: Http) {
   }
 
-  public getQuestions(): Observable<Question[]> {
-    return this.http.get(this.questionsUrl)
+  public getQuestions(published = ''): Observable<Question[]> {
+    return this.http.get(`${this.questionsUrl}?published=${published}`)
       .map(this.extractData);
   }
 
