@@ -20,7 +20,7 @@ export class QuestionsListComponent {
   getQuestions() {
     this.questionsService.getQuestions(this.publishedFilter)
       .subscribe(questions => {
-        this.questions = questions.map(q => QuestionsListComponent.computeClassName(q));
+        this.questions = questions;
         this.ref.detectChanges();
       });
   }
@@ -30,14 +30,8 @@ export class QuestionsListComponent {
       .subscribe(res => {
         if (res.ok) {
           question.published = !question.published;
-          QuestionsListComponent.computeClassName(question);
         }
       });
-  }
-
-  static computeClassName(q: Question): Question {
-    q.className = q.published ? 'published' : 'unpublished';
-    return q;
   }
 
   goToQuestionDetail(question: Question) {

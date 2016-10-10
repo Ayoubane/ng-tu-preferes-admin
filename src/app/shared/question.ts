@@ -3,7 +3,6 @@ export interface Question {
   content: string;
   published: boolean;
   choices: Choice[];
-  className?: string;
 }
 
 export interface Choice {

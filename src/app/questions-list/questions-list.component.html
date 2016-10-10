@@ -9,13 +9,12 @@
 
   <md-card>
     <md-list>
-      <md-list-item *ngFor="let q of questions" [class]="q.className">
+      <md-list-item *ngFor="let q of questions">
         <p md-line>
           <span> {{q.content}} </span>
         </p>
-        <button md-icon-button class="publish-btn" (click)="changeQuestionVisiblity(q)">
-          <md-icon>done</md-icon>
-        </button>
+        <md-slide-toggle [checked]="q.published" (change)="changeQuestionVisiblity(q)">
+        </md-slide-toggle>
         <button md-icon-button color="primary" (click)="goToQuestionDetail(q)">
           <md-icon>description</md-icon>
         </button>
