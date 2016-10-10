@@ -26,19 +26,18 @@
         formControlName="content"
         placeholder="Contenu"
         required="true"
-        [dividerColor]="choices.controls[i].controls.content.valid ? 'primary' : 'warn'"
+        [dividerColor]="defineDividerColor(choices.controls[i].controls.content)"
         class="choice-field"></md-input>
       <md-input
         formControlName="content_short"
         placeholder="Contenu court"
         required="true"
-        [dividerColor]="choices.controls[i].controls.content_short.valid ? 'primary' : 'warn'"
+        [dividerColor]="defineDividerColor(choices.controls[i].controls.content_short)"
         class="choice-field"></md-input>
       <md-input
         formControlName="slug"
         placeholder="Slug"
         required="true"
-        [dividerColor]="choices.controls[i].controls.slug.valid ? 'primary' : 'warn'"
         class="choice-field"></md-input>
     </md-card>
   </div>

@@ -56,6 +56,10 @@ export class QuestionDetailComponent implements OnInit {
       .subscribe(() => this.router.navigate(['']));
   }
 
+  defineDividerColor(control: FormControl): string {
+    return control.valid ? 'primary' : 'warn';
+  }
+
   handleKeyPress(event: KeyboardEvent) {
     if (event.keyCode === 13) {
       event.preventDefault();
