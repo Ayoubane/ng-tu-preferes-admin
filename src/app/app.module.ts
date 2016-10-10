@@ -10,6 +10,7 @@ import {QuestionsListComponent} from './questions-list/questions-list.component'
 import {QuestionsService, AuthService} from './shared';
 import {QuestionDetailComponent} from './question-detail/question-detail.component';
 import {QuestionDetailResolver} from "./question-detail/question-detail-resolver";
+import {AuthGuard} from "./shared/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -33,14 +34,16 @@ import {QuestionDetailResolver} from "./question-detail/question-detail-resolver
         component: QuestionDetailComponent,
         resolve: {
           question: QuestionDetailResolver
-        }
+        },
+        canActivate: [AuthGuard]
       }
     ])
   ],
   providers: [
     QuestionsService,
     AuthService,
-    QuestionDetailResolver
+    QuestionDetailResolver,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

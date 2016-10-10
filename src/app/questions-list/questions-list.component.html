@@ -1,27 +1,35 @@
-<md-card>
-  <md-radio-group [(ngModel)]="publishedFilter" (change)="getQuestions()">
-    <md-radio-button value="">Toutes les questions</md-radio-button>
-    <md-radio-button value="1">Seulement les publiées</md-radio-button>
-    <md-radio-button value="0">Seulement les non publiées</md-radio-button>
-  </md-radio-group>
-</md-card>
+<div *ngIf="isAdmin">
+  <md-card>
+    <md-radio-group [(ngModel)]="publishedFilter" (change)="getQuestions()">
+      <md-radio-button value="">Toutes les questions</md-radio-button>
+      <md-radio-button value="1">Seulement les publiées</md-radio-button>
+      <md-radio-button value="0">Seulement les non publiées</md-radio-button>
+    </md-radio-group>
+  </md-card>
 
-<md-card>
-  <md-list>
-    <md-list-item *ngFor="let q of questions" [class]="q.className">
-      <p md-line>
-        <span> {{q.content}} </span>
-      </p>
-      <button md-icon-button class="publish-btn" (click)="changeQuestionVisiblity(q)">
-        <md-icon>done</md-icon>
-      </button>
-      <button md-icon-button color="primary" (click)="goToQuestionDetail(q)">
-        <md-icon>description</md-icon>
-      </button>
-    </md-list-item>
-  </md-list>
-</md-card>
+  <md-card>
+    <md-list>
+      <md-list-item *ngFor="let q of questions" [class]="q.className">
+        <p md-line>
+          <span> {{q.content}} </span>
+        </p>
+        <button md-icon-button class="publish-btn" (click)="changeQuestionVisiblity(q)">
+          <md-icon>done</md-icon>
+        </button>
+        <button md-icon-button color="primary" (click)="goToQuestionDetail(q)">
+          <md-icon>description</md-icon>
+        </button>
+      </md-list-item>
+    </md-list>
+  </md-card>
 
-<span class="app-action">
-  <a md-fab routerLink="questions/new"><md-icon>add</md-icon></a>
-</span>
+  <span class="app-action">
+    <a md-fab routerLink="questions/new"><md-icon>add</md-icon></a>
+  </span>
+</div>
+
+<div *ngIf="!isAdmin">
+  <md-card class="text-center">
+    Connecte-toi avec ton compte d'administrateur pour accomplir de nouveaux méfaits !
+  </md-card>
+</div>
