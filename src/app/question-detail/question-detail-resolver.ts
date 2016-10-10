@@ -7,11 +7,14 @@ import {QuestionsService} from "../shared/questions.service";
 @Injectable()
 export class QuestionDetailResolver implements Resolve<Question> {
 
-  constructor(private questionsService: QuestionsService) {}
+  constructor(private questionsService: QuestionsService) {
+  }
 
-  resolve(
-    route: ActivatedRouteSnapshot
-  ): Observable<Question> {
-    return this.questionsService.getQuestionDetail(route.params['id']);
+  resolve(route: ActivatedRouteSnapshot): Observable<Question>|Question {
+    let questionId = route.params['id'] || 'new';
+    if (questionId === 'new') {
+      return {choices: []} as Question;
+    }
+    return this.questionsService.getQuestionDetail(questionId);
   }
 }

@@ -7,7 +7,7 @@
 </md-card>
 
 <form novalidate [formGroup]="form" (submit)="saveQuestion()" (keypress)="handleKeyPress($event)">
-  <md-card>
+  <md-card *ngIf="newQuestion">
     <md-slide-toggle formControlName="published">
       Publiée
     </md-slide-toggle>

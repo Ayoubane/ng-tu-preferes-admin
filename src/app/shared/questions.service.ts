@@ -30,7 +30,12 @@ export class QuestionsService {
     return this.http.patch(`${this.apiUrl}/api/questions/${questionId}`, data, this._options);
   }
 
+  postNewQuestion(data: any): Observable<Response> {
+    return this.http.post(`${this.apiUrl}/api/questions`, data, this._options);
+  }
+
   get _options() {
     return this.authService.provideRequestOption();
   }
+
 }

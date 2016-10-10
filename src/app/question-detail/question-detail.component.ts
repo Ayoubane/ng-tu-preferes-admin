@@ -52,12 +52,21 @@ export class QuestionDetailComponent implements OnInit {
 
   saveQuestion() {
     let data = this.form.getRawValue();
-    this.questionsService.updateQuestion(this.question.id, data)
-      .subscribe(() => this.router.navigate(['']));
+    let obs;
+    if (this.question.id) {
+      obs = this.questionsService.updateQuestion(this.question.id, data)
+    } else {
+      obs = this.questionsService.postNewQuestion(data);
+    }
+    obs.subscribe(() => this.router.navigate(['']));
   }
 
   defineDividerColor(control: FormControl): string {
     return control.valid ? 'primary' : 'warn';
+  }
+
+  get newQuestion(): boolean {
+    return !!this.question.id;
   }
 
   handleKeyPress(event: KeyboardEvent) {
