@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Question, Choice} from "../shared/question";
 import {FormBuilder, FormGroup, FormArray, Validators, FormControl} from "@angular/forms";
 import {QuestionsService} from "../shared/questions.service";
+import * as slug from 'slug';
 
 @Component({
   selector: 'app-question-detail',
@@ -73,5 +74,11 @@ export class QuestionDetailComponent implements OnInit {
     if (event.keyCode === 13) {
       event.preventDefault();
     }
+  }
+
+  generateSlugForChoice(control: FormControl) {
+    let contentShort = control.get('content_short').value;
+    //noinspection TypeScriptUnresolvedVariable
+    control.get('slug').setValue(slug(contentShort, slug.defaults.modes["rfc3986"]));
   }
 }

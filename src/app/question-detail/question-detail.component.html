@@ -33,6 +33,7 @@
         placeholder="Contenu court"
         required="true"
         [dividerColor]="defineDividerColor(choices.controls[i].controls.content_short)"
+        (keyup)="generateSlugForChoice(choices.controls[i])"
         class="choice-field"></md-input>
       <md-input
         formControlName="slug"
